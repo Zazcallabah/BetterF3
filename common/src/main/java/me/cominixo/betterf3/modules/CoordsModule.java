@@ -73,7 +73,9 @@ public class CoordsModule extends BaseModule {
     final Entity cameraEntity = client.getCameraEntity();
 
     final Text xyz =
-    Utils.styledText("X", this.colorX).append(Utils.styledText("Y", this.colorY)).append(Utils.styledText("Z",
+    Utils.styledText("X", this.colorX)
+      .append(Utils.styledText("Y", this.colorY))
+      .append(Utils.styledText("Z",
     this.colorZ));
 
     if (cameraEntity != null) {
@@ -82,27 +84,52 @@ public class CoordsModule extends BaseModule {
       final String cameraZ = String.format("%.3f", cameraEntity.getZ());
 
       // Player coords
-      lines.get(0).value(Arrays.asList(xyz, Utils.styledText(cameraX, this.colorX),
-      Utils.styledText(cameraY, this.colorY), Utils.styledText(cameraZ, this.colorZ)));
+      lines.get(0).value(
+        Arrays.asList(xyz,
+          Utils.styledText(cameraX, this.colorX),
+          Utils.styledText(cameraY, this.colorY),
+          Utils.styledText(cameraZ, this.colorZ)
+        )
+      );
 
       final BlockPos blockPos = cameraEntity.getBlockPos();
       // Block coords
-      lines.get(1).value(Arrays.asList(Utils.styledText(blockPos.getX(), this.colorX),
-      Utils.styledText(blockPos.getY(), this.colorY), Utils.styledText(blockPos.getZ(), this.colorZ)));
+      lines.get(1).value(
+        Arrays.asList(
+          Utils.styledText(blockPos.getX(), this.colorX),
+          Utils.styledText(blockPos.getY(), this.colorY),
+          Utils.styledText(blockPos.getZ(), this.colorZ)
+        )
+      );
       // Chunk Relative coords
-      lines.get(2).value(Arrays.asList(Utils.styledText(blockPos.getX() & 15, this.colorX),
-      Utils.styledText(blockPos.getY() & 15, this.colorY), Utils.styledText(blockPos.getZ() & 15, this.colorZ)));
+      lines.get(2).value(
+        Arrays.asList(
+          Utils.styledText( blockPos.getX() & 15, this.colorX),
+          Utils.styledText(blockPos.getY() & 15, this.colorY),
+          Utils.styledText(blockPos.getZ() & 15, this.colorZ)
+        )
+      );
       // Chunk coords
-      lines.get(3).value(Arrays.asList(Utils.styledText(blockPos.getX() >> 4, this.colorX),
-      Utils.styledText(blockPos.getY() >> 4, this.colorY), Utils.styledText(blockPos.getZ() >> 4, this.colorZ)));
+      lines.get(3).value(
+        Arrays.asList(
+          Utils.styledText(blockPos.getX() >> 4, this.colorX),
+          Utils.styledText(blockPos.getY() >> 4, this.colorY),
+          Utils.styledText(blockPos.getZ() >> 4, this.colorZ)
+        )
+      );
       // Player velocity
       final int ticksPerSecond = 20;
       final Vec3d velocity = cameraEntity.getVelocity();
       final String vX = String.format("%.3f", velocity.getX() * ticksPerSecond);
       final String vY = String.format("%.3f", velocity.getY() * ticksPerSecond);
       final String vZ = String.format("%.3f", velocity.getZ() * ticksPerSecond);
-      lines.get(4).value(Arrays.asList(Utils.styledText(vX, this.colorX),
-      Utils.styledText(vY, this.colorY), Utils.styledText(vZ, this.colorZ)));
+      lines.get(4).value(
+        Arrays.asList(
+          Utils.styledText(vX, this.colorX),
+          Utils.styledText(vY, this.colorY),
+          Utils.styledText(vZ, this.colorZ)
+        )
+      );
       lines.get(5).value(Utils.styledText(String.format("%.3f", velocity.length() * ticksPerSecond), this.defaultNameColor));
     }
   }
