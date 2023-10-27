@@ -96,13 +96,14 @@ public class CoordsModule extends BaseModule {
       lines.get(3).value(Arrays.asList(Utils.styledText(blockPos.getX() >> 4, this.colorX),
       Utils.styledText(blockPos.getY() >> 4, this.colorY), Utils.styledText(blockPos.getZ() >> 4, this.colorZ)));
       // Player velocity
+      final int ticksPerSecond = 20;
       final Vec3d velocity = cameraEntity.getVelocity();
-      final String vX = String.format("%.3f", velocity.getX());
-      final String vY = String.format("%.3f", velocity.getY());
-      final String vZ = String.format("%.3f", velocity.getZ());
+      final String vX = String.format("%.3f", velocity.getX() * ticksPerSecond);
+      final String vY = String.format("%.3f", velocity.getY() * ticksPerSecond);
+      final String vZ = String.format("%.3f", velocity.getZ() * ticksPerSecond);
       lines.get(4).value(Arrays.asList(Utils.styledText(vX, this.colorX),
       Utils.styledText(vY, this.colorY), Utils.styledText(vZ, this.colorZ)));
-      lines.get(5).value(Utils.styledText(String.format("%.3f", velocity.length()), this.defaultNameColor));
+      lines.get(5).value(Utils.styledText(String.format("%.3f", velocity.length() * ticksPerSecond), this.defaultNameColor));
     }
   }
 }
